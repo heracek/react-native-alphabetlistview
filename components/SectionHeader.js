@@ -48,14 +48,14 @@ class SectionHeader extends Component {
 
     if (SectionComponent) {
       return (
-        <View ref={this.props.sectionHeaderRef}>
+        <View ref={this.props.sectionHeaderRef} onLayout={this.props.onLayout}>
           <SectionComponent {...this.props} />
         </View>
       );
     }
 
     return (
-      <View ref={this.props.sectionHeaderRef} style={styles.container}>
+      <View ref={this.props.sectionHeaderRef} style={styles.container} onLayout={this.props.onLayout}>
         <Text style={styles.text}>{this.props.title}</Text>
       </View>
     );
