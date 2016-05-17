@@ -157,7 +157,18 @@ class LetterListView extends Component {
     y = y - this.props.sectionHeaderHeight;
 
     var sectionY = this.sections[section];
-    this.refs.listview.refs.listviewscroll.scrollTo({ y: sectionY, x: 0, animated: false });
+
+    var listViewScroll = this.refs.listview.refs.listviewscroll;
+
+    if (typeof listViewScroll.scrollTo !== 'function') {
+      if (typeof listViewScroll.getScrollResponder === 'function') {
+        listViewScroll = listViewScroll.getScrollResponder();
+      } else {
+        return;
+      }
+    }
+
+    listViewScroll.scrollTo({ y: sectionY, x: 0, animated: false });
     this.props.onScrollToSection && this.props.onScrollToSection(section);
   }
 
