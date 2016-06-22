@@ -1,14 +1,10 @@
 'use strict';
+
 /* jshint esnext: true */
 
-import React, {
-  Component,
-  ListView,
-  StyleSheet,
-  View,
-  PropTypes,
-  NativeModules
-} from 'react-native';
+import React, {Component, PropTypes} from 'react';
+
+import {ListView, StyleSheet, View, NativeModules} from 'react-native';
 
 import merge from 'merge';
 

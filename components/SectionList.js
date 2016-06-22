@@ -1,13 +1,7 @@
 'use strict';
 
-import React, {
-  Component,
-  PropTypes,
-  StyleSheet,
-  View,
-  Text,
-  NativeModules
-} from 'react-native';
+import React, {Component, PropTypes} from 'react';
+import {StyleSheet, View, Text, NativeModules} from 'react-native';
 
 const UIManager = NativeModules.UIManager;
 const returnTrue = () => true;
