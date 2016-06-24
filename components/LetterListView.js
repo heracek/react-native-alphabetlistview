@@ -4,7 +4,7 @@
 
 import React, {Component, PropTypes} from 'react';
 
-import {ListView, StyleSheet, View, NativeModules} from 'react-native';
+import {ListView, ScrollView, StyleSheet, View, NativeModules} from 'react-native';
 
 import merge from 'merge';
 
@@ -154,7 +154,8 @@ class LetterListView extends Component {
 
     var sectionY = this.sections[section];
 
-    var listViewScroll = this.refs.listview.refs.listviewscroll;
+    var listViewScroll = this._listviewscroll;
+    if (!listViewScroll) { return; }
 
     if (typeof listViewScroll.scrollTo !== 'function') {
       if (typeof listViewScroll.getScrollResponder === 'function') {
@@ -259,11 +260,17 @@ class LetterListView extends Component {
     });
 
     var ListViewComponent = this.props.listView || ListView;
+    var ScrollComponent = this.props.scrollCompont || ScrollView;
 
     return (
       <View ref="view" style={styles.container}>
         <ListViewComponent
           ref="listview"
+          renderScrollComponent={props => (
+            <ScrollComponent
+              ref={(theRef) => this._listviewscroll = theRef}
+              {...props}
+            />)}
           {...props}
         />
         {sectionList}
